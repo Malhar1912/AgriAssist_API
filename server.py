@@ -36,7 +36,7 @@ app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
 # Configuration
-GEMINI_API_KEY = "AIzaSyBy8wkFOmd2OTRP4qWF6HllOhhKm942HL0" # Directly using the provided key
+GEMINI_API_KEY = "AIzaSyCT9xr7dD4PFOikxJxAtKLNCCr-XnYeaNY" # Directly using the provided key
 
 # Models
 class ChatMessage(BaseModel):
@@ -512,3 +512,4 @@ logger = logging.getLogger(__name__)
 async def shutdown_db_client():
 
     client.close()
+
