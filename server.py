@@ -36,7 +36,7 @@ app = FastAPI()
 api_router = APIRouter(prefix="/api")
 
 # Configuration
-GEMINI_API_KEY = "AIzaSyAkM4DsMMqElorw_bqBwhGwujNBQyiPVc0" # Directly using the provided key
+GEMINI_API_KEY = "AIzaSyBy8wkFOmd2OTRP4qWF6HllOhhKm942HL0" # Directly using the provided key
 
 # Models
 class ChatMessage(BaseModel):
@@ -74,9 +74,9 @@ class LoanCalculationRequest(BaseModel):
 class AgriAssistAgents:
     def __init__(self):
         # Langchain models are initialized here, not in separate methods
-        self.query_advisor_model = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=GEMINI_API_KEY)
-        self.plant_detection_model = ChatGoogleGenerativeAI(model="gemini-pro-vision", google_api_key=GEMINI_API_KEY)
-        self.financial_advisor_model = ChatGoogleGenerativeAI(model="gemini-pro", google_api_key=GEMINI_API_KEY)
+        self.query_advisor_model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GEMINI_API_KEY)
+        self.plant_detection_model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GEMINI_API_KEY)
+        self.financial_advisor_model = ChatGoogleGenerativeAI( model="gemini-1.5-flash", google_api_key=GEMINI_API_KEY)
 
     async def _get_chat_history_for_langchain(self, session_id: str, agent_type: str) -> List[Any]:
         """Fetches chat history for a specific session and agent type, formatted for Langchain."""
@@ -510,4 +510,5 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
+
     client.close()
